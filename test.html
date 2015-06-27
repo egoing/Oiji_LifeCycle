@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      .handle{
+        width:200px;
+        height:200px;
+        repeat:none;
+      }
+    </style>
+    <script type="text/javascript" src="lib/jquery-2.1.4.min.js">
+
+    </script>
+  </head>
+  <body>
+    <div id="wheel" class="handle" style="background-image:url('img/noun_48020.svg')">
+
+    </div>
+    <script type="text/javascript">
+    jQuery.fn.rotate = function(degrees) {
+        $(this).css({'-webkit-transform' : 'rotate('+ degrees +'deg)',
+                     '-moz-transform' : 'rotate('+ degrees +'deg)',
+                     '-ms-transform' : 'rotate('+ degrees +'deg)',
+                     'transform' : 'rotate('+ degrees +'deg)'});
+        return $(this);
+    };
+
+    Bicycle = {
+      Moter : {
+        _offset : 0,
+        _angle : 0,
+        _rotate : function(){
+          var a = Bicycle.Moter._angle;
+          var o = Bicycle.Moter._offset;
+          $('#wheel').rotate(a+o)
+          Bicycle.Moter._angle = a+o;
+          if(o>0)
+              setTimeout(Bicycle.Moter._rotate, 100)
+        },
+        setPower : function(_offset){
+          Bicycle.Moter._offset = _offset;
+          this._rotate(_offset)
+        }
+      }
+    }
+    </script>
+    <script id="wheel" src="lib/move.js" type="text/javascript">
+    </script>
+
+  </body>
+</html>

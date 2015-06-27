@@ -1,0 +1,150 @@
+< 자전거 OS Beta >
+
+타이어 공기압
+차체 부식량
+서스펜션 정상작동 여부
+
+
+
+
+Handle.isExist()
+Handle.getAngle()
+Handle.getAngle()
+
+
+Handle class
+	isExist()
+	angle()
+
+
+Break class
+	set(0-255)
+	get()
+	FrontBreak class
+	RearBreak class
+
+
+
+Bell class
+	set(0-255)
+	get()
+
+
+DriveTrain
+	Gear
+		max()
+		getStep()
+		up()
+		down()
+
+
+Saddle
+	getWeight()
+	getHeight()
+	up()
+	down()
+
+
+
+
+Aircon
+	on
+	off
+	stepup()
+	stepdown()
+
+
+
+
+- 변속기 레버
+기어 단수
+
+
+* 프레임
+GPS 모듈
+Blutooth 모듈
+크랙 여부
+표면 부식 여부
+중량
+
+* 서스펜션
+
+
+
+* 메인 프로세서
+
+GPS 모듈
+Blutooth 모듈
+
+
+
+
+- 브레이크 레버
+왼쪽 브레이크 레버
+오른쪽 브레이크 레버
+
+- 그립
+마찰계수
+마모도
+
+
+- 익스텐션 마운트
+익스텐션 종류
+
+
+* 휠
+
+- 타이어
+공기압
+
+- 튜브
+
+
+- 림
+폭
+내경
+스포크
+
+- 허브
+
+
+* 사이드 스탠드
+
+
+
+* 브레이크
+- 패드
+
+- 와이어
+
+- 종류
+
+
+
+* 기어
+- 체인
+
+
+
+< 애플리케이션 >
+
+GPS를 통해 교차로 위치에 도달했을 때 기어를 자동으로 저속으로 변경
+공공 화장실 탐색
+
+ABS 브레이크 시스템
+
+Body OBD 익스텐션 구매 후 자전거
+
+브레이크 감도 이퀼라이저
+브레이크 딜레이. 케이블 교체 경고
+브레이크 패드 마모도
+
+
+벨
+	거리에 따른 자동경적
+
+
+* 안장
+무게, 높이, 각도 (높이와 각도는 기계적인 제어 가능)
+핸들-안장-패달에 미치는 힘의 균형
+시간 변화에 따른 습관 관리

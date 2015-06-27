@@ -4,18 +4,31 @@
     <meta charset="utf-8">
     <title></title>
     <style media="screen">
-      .handle{
+      .part{
         width:200px;
         height:200px;
-        repeat:none;
+        background-repeat:no-repeat;
+        background-size: 200px;
       }
     </style>
+    <script type="text/javascript" src="lib/jquery-2.1.4.min.js">
+
+    </script>
   </head>
   <body>
-    <div id="wheel" class="handle" style="background-image:url('img/noun_48020.svg')">
+    <ul id="result">
 
-    </div>
+    </ul>
+    <div id="gear" class="part" style="background-image:url('img/Bicycle_02.png')"></div>
+    <div id="wheel" class="part" style="background-image:url('img/noun_48020.svg')"></div>
     <script type="text/javascript">
+    jQuery.fn.rotate = function(degrees) {
+        $(this).css({'-webkit-transform' : 'rotate('+ degrees +'deg)',
+                     '-moz-transform' : 'rotate('+ degrees +'deg)',
+                     '-ms-transform' : 'rotate('+ degrees +'deg)',
+                     'transform' : 'rotate('+ degrees +'deg)'});
+        return $(this);
+    };
     Bicycle = {
       Handle : {
         angle:0,
@@ -29,7 +42,6 @@
       Bell : {
         volume : 0,
         setVolume : function(_volume){
-          move('#wheel').rotate(_volume).end()
           this.volume = _volume;
         },
         getVolume : function(){
@@ -38,29 +50,77 @@
       },
       DriveTrain : {
         Gear : {
-          getMax : function(){},
-          getCurrentStep : function(){},
-          up : function(){},
-          down : function(){}
+          _max : 2,
+          _current : 0,
+          getMax : function(){
+            return this._max;
+          },
+          getCurrentStep : function(){
+            return this._curent;
+          },
+          set: function(step){
+            this._current = step;
+            $('#gear').css('background-image', "url('./img/Bicycle_0"+this._current+".png')")
+          },
+          up : function(callback){
+            if(this._current < this._max){
+              this._current = this._current + 1;
+              console.log(this._current)
+              $('#gear').css('background-image', "url('./img/Bicycle_0"+this._current+".png')")
+            } else {
+              if(callback)
+                callback();
+            }
+          },
+          down : function(callback){
+            if(this._current > 0){
+              this._current = this._current - 1;
+              $('#gear').css('background-image', "url('./img/Bicycle_0"+this._current+".png')")
+            } else {
+              if(callback)
+                callback();
+            }
+          }
         },
         Wheel : {
+          _stop_callback : function(){
+
+          },
           getRPM : function(){
 
           },
           getWheelSize : function(){
             return 700;
+          },
+          stop : function(callback){
+            _stop_callback = callback;
           }
         },
         Crank : {
           getRPM : function(){
-
           }
         },
-        Motor : {
-            setPower : function(){,
-            getInfo : function(){
-              power : 10
+        Moter : {
+          _offset : 0,
+          _angle : 0,
+          _rotate : function(){
+            var a = Bicycle.DriveTrain.Moter._angle;
+            var o = Bicycle.DriveTrain.Moter._offset;
+            $('#wheel').rotate(a+o)
+            Bicycle.DriveTrain.Moter._angle = a+o;
+            if(Bicycle.DriveTrain.Moter._offset > 0.4){
+              Bicycle.DriveTrain.Gear.set(2)
+            } else if(Bicycle.DriveTrain.Moter._offset > 0.2){
+              Bicycle.DriveTrain.Gear.set(1)
+            } else if(Bicycle.DriveTrain.Moter._offset >= 0){
+              Bicycle.DriveTrain.Gear.set(0)
             }
+            if(o>0)
+                setTimeout(Bicycle.DriveTrain.Moter._rotate, 5)
+          },
+          setPower : function(_offset){
+            Bicycle.DriveTrain.Moter._offset = _offset;
+            this._rotate(_offset)
           }
         }
       },
@@ -68,8 +128,10 @@
         getVoltage : function(){
 
         },
-        getInfo : {
-          'type' : 'Li'
+        getInfo : function(){
+          return {
+            'type' : 'Li'
+          }
         }
       },
       Break : {
@@ -81,8 +143,10 @@
         }
       }
     }
+    Bicycle.DriveTrain.Moter.setPower(0);
     </script>
     <script id="wheel" src="lib/move.js" type="text/javascript">
     </script>
+
   </body>
 </html>

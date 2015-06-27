@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      .handle{
+        width:200px;
+        height:200px;
+        repeat:none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="wheel" class="handle" style="background-image:url('img/noun_48020.svg')">
+
+    </div>
+    <script type="text/javascript">
+    Bicycle = {
+      Handle : {
+        angle:0,
+        setAngle:function(_angle){
+          this.angle = _angle
+        },
+        getAngle:function(){
+          return this.angle;
+        }
+      },
+      Bell : {
+        volume : 0,
+        setVolume : function(_volume){
+          move('#wheel').rotate(_volume).end()
+          this.volume = _volume;
+        },
+        getVolume : function(){
+          return this.volume;
+        }
+      Wheel : {
+      },
+
+      },
+      Break : {
+        Front : {
+
+        },
+        Rear : {
+
+        }
+      }
+    }
+    Bicycle.Handle.setAngle(10);
+    console.log(Bicycle.Handle.getAngle())
+    </script>
+    <script id="wheel" src="lib/move.js" type="text/javascript">
+    </script>
+  </body>
+</html>

@@ -35,9 +35,42 @@
         getVolume : function(){
           return this.volume;
         }
-      Wheel : {
       },
+      DriveTrain : {
+        Gear : {
+          getMax : function(){},
+          getCurrentStep : function(){},
+          up : function(){},
+          down : function(){}
+        },
+        Wheel : {
+          getRPM : function(){
 
+          },
+          getWheelSize : function(){
+            return 700;
+          }
+        },
+        Crank : {
+          getRPM : function(){
+
+          }
+        },
+        Motor : {
+            setPower : function(){,
+            getInfo : function(){
+              power : 10
+            }
+          }
+        }
+      },
+      Battery : {
+        getVoltage : function(){
+
+        },
+        getInfo : {
+          'type' : 'Li'
+        }
       },
       Break : {
         Front : {
@@ -48,8 +81,6 @@
         }
       }
     }
-    Bicycle.Handle.setAngle(10);
-    console.log(Bicycle.Handle.getAngle())
     </script>
     <script id="wheel" src="lib/move.js" type="text/javascript">
     </script>
